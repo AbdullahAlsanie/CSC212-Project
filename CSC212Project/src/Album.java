@@ -1,12 +1,12 @@
 
-public class Album1 {
+public class Album {
 	 String name;
 	    String condition;
 	    PhotoManager manager;
 	    int totalnbcomp = 0;
 	    
 	    // Constructor
-	    public Album1(String name, String condition, PhotoManager manager) {
+	    public Album(String name, String condition, PhotoManager manager) {
 	        this.name = name;
 	        this.condition = condition;
 	        this.manager = manager;
@@ -28,18 +28,18 @@ public PhotoManager getManager() {
 
 public boolean Tag_Exist_in_photo(LinkedList<String> L, String tag) {
     if (L.empty()) return false;
-    L.findFirst();
+    L.findfirst();
     while (!L.last()) 
     {
         totalnbcomp++;
-        if (L.retrieve().equals(tag)) {
+        if (L.retrive().equals(tag)) {
            
             return true;
         }
-        L.findNext();
+        L.findnext();
     }
     totalnbcomp++;
-    if (L.retrieve().equals(tag)) {
+    if (L.retrive().equals(tag)) {
        
         return true;
     }
@@ -74,17 +74,17 @@ public LinkedList<Photo> getPhotos() {
         a[i] = a[i].trim();
     }
 
-    allPhotos.findFirst();
+    allPhotos.findfirst();
     while (!allPhotos.last()) 
     {
-        if (subset(a, allPhotos.retrieve().getTags())) {
-            res.insert(allPhotos.retrieve());
+        if (subset(a, allPhotos.retrive().getTags())) {
+            res.insert(allPhotos.retrive());
         }
-        allPhotos.findNext();
+        allPhotos.findnext();
     }
 
-    if (subset(a, allPhotos.retrieve().getTags())) {
-        res.insert(allPhotos.retrieve());
+    if (subset(a, allPhotos.retrive().getTags())) {
+        res.insert(allPhotos.retrive());
     }
 
     return res;

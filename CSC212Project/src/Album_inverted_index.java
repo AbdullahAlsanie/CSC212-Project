@@ -1,5 +1,5 @@
 
-public class Album1_inverted_index {
+public class Album_inverted_index {
 	    String name;
 	    String condition;
 	    InvIndexPhotoManager manager;
@@ -27,13 +27,13 @@ public class Album1_inverted_index {
 	    }
 public boolean Photo_Exist(LinkedList<Photo> L, Photo p) {
     if (L.empty()) return false;
-    L.findFirst();
+    L.findfirst();
     while (!L.last()) {
-        if (L.retrieve().path.equals(p.path))
+        if (L.retrive().path.equals(p.path))
             return true;
-        L.findNext();
+        L.findnext();
     }
-    if (L.retrieve().path.equals(p.path))
+    if (L.retrive().path.equals(p.path))
         return true;
     return false;
 }
@@ -53,26 +53,26 @@ public LinkedList<Photo> And(LinkedList<Photo> A, LinkedList<Photo> B) {
     
     A.findFirst();
     while (true) {
-        boolean found = Photo_Exist(result, A.retrieve());
+        boolean found = Photo_Exist(result, A.retrive());
         if (!found) { 
         	
-        	B.findFirst();
+        	B.findfirst();
             while (true)
             {
-                if (B.retrieve().path.equals(A.retrieve().path))
+                if (B.retrive().path.equals(A.retrive().path))
                 {
-                    result.insert(A.retrieve());
+                    result.insert(A.retrive());
                     break;
                 }
                 if (!B.last())
-                    B.findNext();
+                    B.findnext();
                 else
                     break;
             } // end inner while for B
         } // end if not found
 
         if (!A.last())
-            A.findNext();
+            A.findnext();
         else
             break;
     }

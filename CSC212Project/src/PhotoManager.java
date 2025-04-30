@@ -16,16 +16,16 @@ public class PhotoManager {
      public void deletePhoto(String path) {
          if (allPhotos.empty()) return;
  
-         allPhotos.findFirst();
+         allPhotos.findfirst();
          while (!allPhotos.last()) {
-             if (allPhotos.retrieve().path.equals(path)) {
+             if (allPhotos.retrive().path.equals(path)) {
                  allPhotos.remove();
                  return;
              }
-             allPhotos.findNext();
+             allPhotos.findnext();
          }
  
-         if (allPhotos.retrieve().path.equals(path)) {
+         if (allPhotos.retrive().path.equals(path)) {
              allPhotos.remove();
          }
      }
@@ -39,15 +39,16 @@ public class PhotoManager {
      public boolean PhotoExists(LinkedList<Photo> L, Photo p) {
          if (L.empty()) return false;
  
-         L.findFirst();
+         L.findfirst();
          while (!L.last()) {
-             if (L.retrieve().path.equals(p.path))
+             if (L.retrive().path.equals(p.path))
                  return true;
-             L.findNext();
+             L.findnext();
          }
  
-         if (L.retrieve().path.equals(p.path))
+         if (L.retrive().path.equals(p.path))
              return true;
  
          return false;
      }
+}
