@@ -51,7 +51,7 @@ public LinkedList<Photo> And(LinkedList<Photo> A, LinkedList<Photo> B) {
     if (A.empty() || B.empty())
         return result;
     
-    A.findFirst();
+    A.findfirst();
     while (true) {
         boolean found = Photo_Exist(result, A.retrive());
         if (!found) { 

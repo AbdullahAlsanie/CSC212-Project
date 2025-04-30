@@ -16,11 +16,11 @@ public class InvIndexPhotoManager {
         
         LinkedList<String> tags = p.getTags();
         if (tags.empty()) return; 
-        tags.findFirst();
+        tags.findfirst();
 
         while (!tags.last()) {
-            String curTag = tags.retrieve();
-            boolean found = index.findKey(curTag);
+            String curTag = tags.retrive();
+            boolean found = index.findkey(curTag);
 
             if (!found) {
                 LinkedList<Photo> curPhotos = new LinkedList<Photo>();
@@ -31,10 +31,10 @@ public class InvIndexPhotoManager {
                 curPhotos.insert(p);
             }
 
-            tags.findNext();
+            tags.findnext();
         }
-        String curTag = tags.retrieve();
-        boolean found = index.findKey(curTag);
+        String curTag = tags.retrive();
+        boolean found = index.findkey(curTag);
 
         if (!found) {
             LinkedList<Photo> curPhotos = new LinkedList<Photo>();
@@ -49,16 +49,16 @@ public class InvIndexPhotoManager {
     public void remove_From_List(LinkedList<Photo> L, Photo p) {
         if (L.empty()) return;
 
-        L.findFirst();
+        L.findfirst();
         while (!L.empty() && !L.last()) {
-            if (L.retrieve().path.equals(p.path)) {
+            if (L.retrive().path.equals(p.path)) {
                 L.remove();
             } else {
-                L.findNext();
+                L.findnext();
             }
         }
 
-        if (!L.empty() && L.retrieve().path.equals(p.path)) {
+        if (!L.empty() && L.retrive().path.equals(p.path)) {
             L.remove();
         }
     }
@@ -68,40 +68,40 @@ public class InvIndexPhotoManager {
     	
         if (allPhotos.empty()) return;
         LinkedList<String>tags=null;
-        allPhotos.findFirst();
+        allPhotos.findfirst();
         while (!allPhotos.last()) {
-            if (allPhotos.retrieve().path.equals(path)) {
-            	tags=allPhotos.retrieve().tags;
+            if (allPhotos.retrive().path.equals(path)) {
+            	tags=allPhotos.retrive().tags;
                 allPhotos.remove();
                 break;
             }
             else
-            allPhotos.findNext();
+            allPhotos.findnext();
         }
 
-        if (allPhotos.retrieve().path.equals(path)) {
-        	tags=allPhotos.retrieve().tags;
+        if (allPhotos.retrive().path.equals(path)) {
+        	tags=allPhotos.retrive().tags;
             allPhotos.remove();
         }
         if (tags == null || tags.empty()) return;
 
         Photo ourPhoto = new Photo(path, tags);
-        tags.findFirst();
+        tags.findfirst();
 
         while (!tags.last()) {
-            if (index.findKey(tags.retrieve())) {
+            if (index.findkey(tags.retrive())) {
                 remove_From_List(index.retrieve(), ourPhoto);
                 if (index.retrieve().empty()) {
-                    index.removeKey(tags.retrieve());
+                    index.removeKey(tags.retrive());
                 }
             }
-            tags.findNext();
+            tags.findnext();
         }
 
-        if (index.findKey(tags.retrieve())) {
+        if (index.findkey(tags.retrive())) {
             remove_From_List(index.retrieve(), ourPhoto);
             if (index.retrieve().empty()) {
-                index.removeKey(tags.retrieve());
+                index.removeKey(tags.retrive());
             }
         }
 
@@ -115,14 +115,14 @@ public class InvIndexPhotoManager {
     public boolean PhotoExists(LinkedList<Photo> L, Photo p) {
         if (L.empty()) return false;
 
-        L.findFirst();
+        L.findfirst();
         while (!L.last()) {
-            if (L.retrieve().path.equals(p.path))
+            if (L.retrive().path.equals(p.path))
                 return true;
-            L.findNext();
+            L.findnext();
         }
 
-        if (L.retrieve().path.equals(p.path))
+        if (L.retrive().path.equals(p.path))
             return true;
 
         return false;
